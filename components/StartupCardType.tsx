@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 type posttype = {
     _createdAt: string,
-    views: number,
+    view: number,
     author: { _id: number, name: string },
     _id: number,
     description: string,
@@ -27,7 +27,7 @@ export const StartupCardType = ({ post }: { post: posttype }) => {
                     <div className='flex gap-1.5'>
                         <EyeIcon className="size-5 text-pink-500" />
                         <span className='text-sm font-bold'>
-                            {post.views}
+                            {post.view}
                         </span>
                     </div>
                 </div>
@@ -43,11 +43,14 @@ export const StartupCardType = ({ post }: { post: posttype }) => {
                         <Image src="https://placehold.co/48x48" alt='placeholder' width={48} height={48} className='rounded-full' />
                     </Link>
                 </div>
-                <Link href={`/startup/${post._id}`}>
+                <Link href={`/startup1/${post._id}`}>
+                    <h3 className='text-2xl font-semibold w-full max-w-[200px] line-clamp-1'>
+                        {post.title}
+                    </h3>
                     <h3 className='text-2xl font-semibold line-clamp-1'>
                         {post.description}
-                        <Image src={post.image} className='startup-card_img' alt='Image' width={800} height={600} />
                     </h3>
+                    <Image src={post.image} className='startup-card_img' alt='Image' width={800} height={600} />
                 </Link>
 
                 <div className='flex justify-between items-center gap-3 mt-5'>
@@ -55,7 +58,7 @@ export const StartupCardType = ({ post }: { post: posttype }) => {
                         <p className='text-16 font-medium'>{post.category}</p>
                     </Link>
                     <Button className="startup-card-btn" asChild>
-                        <Link href={`/startup/${post._id}`}>
+                        <Link href={`/startup1/${post._id}`}>
                             Details
                         </Link>
                     </Button>

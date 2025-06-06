@@ -6,6 +6,8 @@ import { redirect } from 'next/dist/server/api-utils';
 
 export const Navbar = async () => {
     const session = await auth();
+    // console.log(session);
+
 
     return (
         <header className="px-5 py-3 bg-white shadow-sm font-bold">
@@ -17,7 +19,7 @@ export const Navbar = async () => {
                 <div className="flex items-center gap-5 text-black">
                     {session?.user ? (
                         <>
-                            <Link href="/start1-up/create">
+                            <Link href="/startup/create">
                                 <span>Create</span>
                             </Link>
 
@@ -26,12 +28,12 @@ export const Navbar = async () => {
                                 await signOut({ redirectTo: "/" });
                             }}>
                                 <button type="submit">
-                                    <span>Logout</span>
+                                    <span className='text-pink-500'>Logout</span>
                                 </button>
                             </form>
 
                             <Link href={`/user/${session.user.id}`}>
-                                <span>{session.user.name}</span>
+                                <Image className='border-2 rounded-full border-black hover:border-4 transition-all duration-200' src={session.user.image || "../public/Group 5.png"} alt='user-image' width={48} height={48}/>
                             </Link>
                         </>
                     ) : (
