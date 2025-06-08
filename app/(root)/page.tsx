@@ -4,6 +4,7 @@ import { StartupCardType } from "../../components/StartupCardType";
 // import {client} from "@/sanity/lib/client"; 
 import { STARTUP_QUERY } from "@/sanity/lib/query";
 import { sanityFetch,SanityLive } from "@/sanity/lib/live";
+import { auth } from "@/auth";
 
 
 type posttype = {
@@ -21,6 +22,11 @@ type posttype = {
 export default async function Home({searchParams}:{searchParams: Promise<{query?: string}>}) {
   const query = (await searchParams).query;
   const params = {search: query || null}; 
+
+  const session = await auth();
+  // If you want to access the custom 'id' property on session, use session.id
+  console.log(session?.id);
+
   // const posts = await client.fetch(STARTUP_QUERY)
   const {data: posts} = await sanityFetch({query: STARTUP_QUERY,params})
   // console.log("posts:",(posts));
