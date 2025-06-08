@@ -8,8 +8,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [GitHub],
   callbacks: {
     async signIn({ user, profile }) {
-      if (!profile) return false;
+      if (!profile || !user) return false;
 
+      const { name, email, image } = user;
       const { id, login, bio } = profile as {
         id: string;
         login?: string;
@@ -23,11 +24,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (!existingUser) {
         await writeClient.create({
           _type: "author",
-          id, // This is your custom id field (not _id)
-          name: user.name,
+          id,
+          name,
           username: login,
-          email: user.email,
-          image: user.image,
+          email,
+          image,
           bio: bio || "",
         });
       }

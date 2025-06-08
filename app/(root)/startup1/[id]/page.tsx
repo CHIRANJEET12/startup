@@ -17,6 +17,8 @@ const page = async ({ params }: { params: Promise<{ id?: string }> }) => {
     if (!id) return notFound();
     const { data: post } = await sanityFetch({ query: STARTUP_BY_ID_QUERY, params: { id } });
 
+    // console.log("Author Data:", post.author);
+
     if (!post) return notFound();
 
     const parsedContent = md.render(post?.pitch || "");
@@ -48,19 +50,25 @@ const page = async ({ params }: { params: Promise<{ id?: string }> }) => {
                             href={`/user/${post.author?._id}`}
                             className="flex gap-2 items-center mb-3"
                         >
-                            <Image
-                                src={post.author.image}
-                                alt="avatar"
-                                width={48}
-                                height={48}
-                                className="rounded-full drop-shadow-lg"
-                            />
+                            {post.author?.image && (
+                                <Image
+                                    src={post.author.image}
+                                    alt="avatar"
+                                    width={48}
+                                    height={48}
+                                />
+                            )}
 
                             <div>
-                                <p className="font-semibold text-20-medium">{post.author.name}</p>
-                                <p className="font-semibold text-16-medium !text-black-300">
-                                    @{post.author.username}
-                                </p>
+                                {post.author?.name && (
+                                    <div>
+                                        <p className="font-semibold text-20-medium">{post.author.name}</p>
+                                        <p className="font-semibold text-16-medium !text-black-300">
+                                            @{post.author.username}
+                                        </p>
+                                    </div>
+                                )}
+
                             </div>
                         </Link>
 
