@@ -6,10 +6,10 @@ import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 
 
-type posttype = {
+export type posttype = {
     _createdAt: string,
     view: number,
-    author: { _id: number, name: string },
+    author: { _id: number, name: string, image: string },
     _id: number,
     description: string,
     image: string,
@@ -40,7 +40,7 @@ export const StartupCardType = ({ post }: { post: posttype }) => {
                         </Link>
                     </div>
                     <Link href={`/user/${post.author?._id}`}>
-                        <Image src="https://placehold.co/48x48" alt='placeholder' width={48} height={48} className='rounded-full' />
+                        <Image src={post.author?.image} alt='placeholder' width={48} height={48} className='rounded-full' />
                     </Link>
                 </div>
                 <Link href={`/startup1/${post._id}`}>

@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { auth, signOut, signIn } from '@/auth';
+import { FaGithub } from "react-icons/fa";
 import { redirect } from 'next/dist/server/api-utils';
 
 export const Navbar = async () => {
@@ -13,7 +14,7 @@ export const Navbar = async () => {
         <header className="px-5 py-3 bg-white shadow-sm font-bold">
             <nav className="flex justify-between items-center">
                 <Link href="/">
-                    <Image src="/Group 5.png" alt="logo" width={144} height={30} />
+                    <span className='text-blue-500'>Cue</span><span className='text-black'>Dot</span>
                 </Link>
 
                 <div className="flex items-center gap-5 text-black">
@@ -28,12 +29,12 @@ export const Navbar = async () => {
                                 await signOut({ redirectTo: "/" });
                             }}>
                                 <button type="submit">
-                                    <span className='text-pink-500'>Logout</span>
+                                    <span className='text-blue-500'>Logout</span>
                                 </button>
                             </form>
 
-                            <Link href={`/user/${session.user.name}`}>
-                                <Image className='border-2 rounded-full border-black hover:border-4 transition-all duration-200' src={session.user.image || "../public/Group 5.png"} alt='user-image' width={48} height={48}/>
+                            <Link href={`/user/${session.user.id}`}>
+                                <Image className='border-2 rounded-full border-black hover:border-4 transition-all duration-200' src={session.user.image || "../public/Group 5.png"} alt='user-image' width={48} height={48} />
                             </Link>
                         </>
                     ) : (
@@ -45,7 +46,12 @@ export const Navbar = async () => {
                             }}
                         >
                             <button type="submit">
-                                <span className="max-sm:hidden">Login</span>
+                                <span className="flex items-center gap-2 max-sm:hidden border border-transparent hover:border-blue-950 px-2 py-1 rounded transition-all">
+                                    <FaGithub className="w-5 h-5" />
+                                    GitHub
+                                </span>
+
+
                                 {/* <LogOut className="size-6 sm:hidden text-red-500" /> */}
                             </button>
                         </form>
