@@ -8,8 +8,7 @@ import Userstartup from "@/components/Userstartup";
 
 const pages = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id;
-  const session = await auth();
-  if (!session) return notFound();
+  
 
   const user = await client.fetch(AUTHOR_BY_ID_QUERY, { id });
   if (!user) return notFound();
