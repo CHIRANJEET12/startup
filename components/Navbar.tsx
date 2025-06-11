@@ -44,10 +44,21 @@ export const Navbar = async () => {
                             }}
                         >
                             <button type="submit">
-                                <span className="flex items-center gap-2 max-sm:hidden border border-transparent hover:border-blue-950 px-2 py-1 rounded transition-all">
-                                    <FaGithub className="w-5 h-5" />
-                                    GitHub
-                                </span>
+<span className="
+  flex items-center gap-2 
+  border border-transparent 
+  hover:border-blue-950 
+  px-2 py-1 rounded 
+  transition-all duration-200
+  max-xs:hidden  // Hide on extra small screens
+  sm:inline-flex // Show from small screens up
+  text-sm sm:text-base // Responsive text size
+  hover:bg-blue-50 // Subtle hover background
+">
+  <FaGithub className="w-4 h-4 sm:w-5 sm:h-5" /> {/* Responsive icon size */}
+  <span className="hidden sm:inline">GitHub</span> {/* Text hidden on mobile */}
+</span>
+
 
 
                                 {/* <LogOut className="size-6 sm:hidden text-red-500" /> */}
