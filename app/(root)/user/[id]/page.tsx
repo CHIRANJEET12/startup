@@ -10,8 +10,8 @@ const pages = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id;
 
   const session = await auth;
-  if(!session) {
-    alert("please sign in first");
+  if (!session) {
+    return <div className="p-4">Please sign in to view this content</div>
   }
   
 
