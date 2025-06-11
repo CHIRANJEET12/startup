@@ -33,9 +33,7 @@ export const Navbar = async () => {
                                 </button>
                             </form>
 
-                            <Link href={`/user/${session.user.id}`}>
                                 <Image className='border-2 rounded-full border-black hover:border-4 transition-all duration-200' src={session.user.image || "../public/Group 5.png"} alt='user-image' width={48} height={48} />
-                            </Link>
                         </>
                     ) : (
                         <form
